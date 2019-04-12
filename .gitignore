@@ -1,0 +1,8 @@
+.vscode
+.vs
+*.obj
+*.pch
+*.log
+*.tlog
+*.pdb
+*.idb

@@ -1,0 +1,16 @@
+image: jeroenknoops/java8-groovy-chrome-xvfb
+
+before_script:
+  - sleep 3
+  - wget http://downloads.arduino.cc/arduino-1.6.9-linux64.tar.xz
+  - tar xvf arduino-1.6.9-linux64.tar.xz
+  - export DISPLAY=:1.0
+  - /etc/init.d/xvfb stop; echo hola!; /etc/init.d/xvfb start; ps -eAf|grep -i xvfb
+  - /sbin/start-stop-daemon --start --quiet --pidfile /tmp/xvfb_1.pid --make-pidfile --background --exec /usr/bin/Xvfb -- :1 -ac -screen 0 1280x1024x16
+  - git clone https://github.com/adafruit/Adafruit_NeoPixel.git arduino-1.6.9/libraries/Adafruit_NeoPixel
+
+
+jobs:
+  script:
+    - echo Verifying
+    - ./arduino-1.6.9/arduino --verify --board arduino:avr:uno AudioSwitch.ino
