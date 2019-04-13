@@ -2,14 +2,13 @@
 #include "AudioSignal.h"
 #include <Arduino.h>
 
-const int BufSize = 10; // hfghfgh qqqqqqqqqqqqq
+const int BufSize = 10;
 
-AudioSignal::AudioSignal(int pinAdcPlus, int pinAdcMinus, int pinAdcRef, int treshold)
+AudioSignal::AudioSignal(int pinAdc,  int pinAdcRef, int treshold)
 {
-	m_pinAdcPlus  = pinAdcPlus;
-	m_pinAdcMinus = pinAdcMinus;
-	m_pinAdcRef   = pinAdcRef;
-	m_treshold    = treshold;
+	m_pinAdc    = pinAdc;
+	m_pinAdcRef = pinAdcRef;
+	m_treshold  = treshold;
 
 	m_bufferIndex = 0;
 	m_bufferMax   = 0;
@@ -27,15 +26,15 @@ bool AudioSignal::isDetected()
 
 int AudioSignal::getDiffValue()
 {
-	int adcPlus  = analogRead(m_pinAdcPlus);
-	int adcMinus = analogRead(m_pinAdcMinus);
+	int adcRef = getRefValue();
+	int adc    = analogRead(m_pinAdc);
   
-  String s1 = String(adcPlus);
-  String s2 = String(adcMinus);
-  String s = s1 + "  " + s2;
-  Serial.println(s);
+    String s1 = String(adc);
+    String s2 = String(adcRef);
+    String s = s1 + "  " + s2;
+    Serial.println(s);
   
-	return  adcPlus - adcMinus;
+	return  adcRef - adc;
 }
 
 int AudioSignal::getRefValue()
