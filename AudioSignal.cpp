@@ -40,10 +40,10 @@ int AudioSignal::getDiffValue()
 int AudioSignal::getRefValue()
 {
 	m_buffer[m_bufferIndex] = analogRead(m_pinAdcRef);
-	
+  
 	// check circular buffer
 	m_bufferIndex++;
-	if (m_bufferIndex < BufSize)
+	if ((m_bufferMax < BufSize) && (m_bufferIndex < BufSize))
 		m_bufferMax++;
 	else
 		m_bufferIndex = 0;
