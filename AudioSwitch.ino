@@ -3,13 +3,13 @@
 #include "OutputDevice.h"
 #include "AudioSignal.h"
 #include "OneshotTimer.h"
-/////////////////
-const int LedPinOn    =  5;
-const int LedPinOff   =  6;
-const int ResetPin    =  7;
-const int TestPin     =  8;
-const int PinAdcRef   = 14;
-const int PinAdc      = 15;
+
+const int LedPinOn    =  1; // PD1 pin 3
+const int LedPinOff   =  2; // PD2 pin 4
+const int switchOnPin =  8; // PB0 pin 14
+const int TestPin     =  5; // PB5 pin 11
+const int PinAdcRef   = 14; // PC0 pin 23
+const int PinAdc      = 15; // PC1 pin 24
 const int Treshold    =  4; // treshold value (in bits) for audio detected
 
 const int LedBlinkTimeOnStartup = 5; // seconds
@@ -28,7 +28,7 @@ OneshotTimer musicDetectionTimer = OneshotTimer(MusicDetectionTimeout,   onMusic
 OneshotTimer spikeDetectionTimer = OneshotTimer(SpikeDetectionTimeout,   onSpikeDetectionTimerExpired);
 OneshotTimer musicStoppingTimer  = OneshotTimer(NoMusicDetectionTimeout, onMusicStoppingTimerExpired);
 
-OutputDevice outputDevice = OutputDevice(LedPinOn, LedPinOff, ResetPin);
+OutputDevice outputDevice = OutputDevice(LedPinOn, LedPinOff, switchOnPin);
 AudioSignal  audioSignal  = AudioSignal(PinAdc, PinAdcRef, Treshold);
 StateMachine stateMachine = StateMachine(musicDetectionTimer, spikeDetectionTimer, musicStoppingTimer, outputDevice);
 

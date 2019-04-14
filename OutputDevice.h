@@ -3,7 +3,7 @@
 
 class OutputDevice {
 public:
-	OutputDevice(int ledPinOn, int ledPinOff, int resetPin);
+	OutputDevice(int ledPinOn, int ledPinOff, int switchOnPin);
 
 	void blinkLedsOnOff(int seconds);
 	void setOn();
@@ -16,5 +16,5 @@ private:
 private:
 	int m_ledPinOn;
 	int m_ledPinOff;
-	int m_resetPin;
+	int m_switchOnPin;
 };
