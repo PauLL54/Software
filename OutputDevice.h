@@ -5,6 +5,7 @@ class OutputDevice {
 public:
 	OutputDevice(int ledPinOn, int ledPinOff, int switchOnPin);
 
+	void setup();
 	void blinkLedsOnOff(int seconds);
 	void setOn();
 	void setOff();

@@ -58,6 +58,7 @@ void checkTestMode()
 void setup() 
 {
   Serial.begin(9600);
+  outputDevice.setup();
   outputDevice.blinkLedsOnOff(LedBlinkTimeOnStartup); // shows that the processor is alive
   analogReference(INTERNAL);  // Configures the reference voltage to 1.1V used for analog input
   pinMode(TestPin, INPUT);

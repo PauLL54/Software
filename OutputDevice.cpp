@@ -7,7 +7,10 @@ OutputDevice::OutputDevice(int ledPinOn, int ledPinOff, int switchOnPin)
 	m_ledPinOn    = ledPinOn;
 	m_ledPinOff   = ledPinOff;
 	m_switchOnPin = switchOnPin;
-	
+}
+
+void OutputDevice::setup()
+{
 	pinMode(m_ledPinOn,    OUTPUT);
 	pinMode(m_ledPinOff,   OUTPUT);
 	pinMode(m_switchOnPin, OUTPUT);
@@ -50,12 +53,12 @@ void OutputDevice::showLedOffState()
 
 void OutputDevice::setOn()
 {
-	digitalWrite(switchOnPin, HIGH);
+	digitalWrite(m_switchOnPin, HIGH);
 	showLedOnState();
 }
 
 void OutputDevice::setOff()
 {
-	digitalWrite(switchOnPin, LOW);
+	digitalWrite(m_switchOnPin, LOW);
 	showLedOffState();
 }
