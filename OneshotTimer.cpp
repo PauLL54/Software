@@ -1,10 +1,12 @@
 //  Copyright © 2019 Paul Langemeijer. All rights reserved.
 #include "OneshotTimer.h"
+#include "Arduino.h"
 
-OneshotTimer::OneshotTimer(unsigned long duration, void (*callback)(void*))
+OneshotTimer::OneshotTimer(unsigned long duration, void (*callback)())
 : m_duration(duration),
-  m_callback(callback),
-  m_id(TIMER_NOT_AN_EVENT)
+  m_stopTime(-1),
+  m_timerStarted(false),
+  m_callback(callback)
 {
 }
 
@@ -15,19 +17,20 @@ void OneshotTimer::setDuration(unsigned long duration)
 
 void OneshotTimer::start()
 {
-    stop();
-    m_id = m_timer.after(m_duration, m_callback, (void*)0);
+    m_stopTime = millis() + m_duration;
+    m_timerStarted = true;
 }
 
 void OneshotTimer::stop()
 {
-    if (m_id >= 0)
-    {
-        m_id = m_timer.stop(m_id);
-    }
+    m_timerStarted = false;
 }
 
 void OneshotTimer::update()
 {
-    m_timer.update();
+    if (m_timerStarted && (millis() > m_stopTime))
+    {
+        m_timerStarted = false;
+        (m_callback)();
+    }
 }

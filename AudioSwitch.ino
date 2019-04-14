@@ -20,9 +20,9 @@ const unsigned long NoMusicDetectionTimeout         = 300000; // 5 minutes
 const unsigned long NoMusicDetectionTimeoutTestMode =   2000; // 2 seconds 
 
 // Required forward declarations:
-void onMusicDetectionTimerExpired(void*); 
-void onSpikeDetectionTimerExpired(void*);
-void onMusicStoppingTimerExpired(void*);
+void onMusicDetectionTimerExpired(); 
+void onSpikeDetectionTimerExpired();
+void onMusicStoppingTimerExpired();
 
 OneshotTimer musicDetectionTimer = OneshotTimer(MusicDetectionTimeout,   onMusicDetectionTimerExpired);
 OneshotTimer spikeDetectionTimer = OneshotTimer(SpikeDetectionTimeout,   onSpikeDetectionTimerExpired);
@@ -32,17 +32,17 @@ OutputDevice outputDevice = OutputDevice(LedPinOn, LedPinOff, switchOnPin);
 AudioSignal  audioSignal  = AudioSignal(PinAdc, PinAdcRef, Treshold);
 StateMachine stateMachine = StateMachine(musicDetectionTimer, spikeDetectionTimer, musicStoppingTimer, outputDevice);
 
-void onMusicDetectionTimerExpired(void*)
+void onMusicDetectionTimerExpired()
 {
   stateMachine.onMusicDetectionTimerExpired();
 }
 
-void onSpikeDetectionTimerExpired(void*)
+void onSpikeDetectionTimerExpired()
 {
   stateMachine.onSpikeDetectionTimerExpired();
 }
 
-void onMusicStoppingTimerExpired(void*)
+void onMusicStoppingTimerExpired()
 {
   stateMachine.onMusicStoppingTimerExpired();
 }

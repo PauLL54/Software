@@ -1,10 +1,9 @@
 //  Copyright © 2019 Paul Langemeijer. All rights reserved.
 #pragma once
-#include "timer.h"
 
 class OneshotTimer {
 public:
-	OneshotTimer(unsigned long duration, void (*callback)(void*));
+	OneshotTimer(unsigned long duration, void (*callback)());
 
     void start();
     void stop();
@@ -13,7 +12,7 @@ public:
     
 private:
     unsigned long m_duration;
-    void (*m_callback)(void*);
-    int m_id;
-    Timer m_timer;
+    unsigned long m_stopTime;
+    bool m_timerStarted;
+    void (*m_callback)();
 };
