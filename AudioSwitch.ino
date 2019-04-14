@@ -4,8 +4,8 @@
 #include "AudioSignal.h"
 #include "OneshotTimer.h"
 
-const int LedPinOn    =  1; // PD1 pin 3
-const int LedPinOff   =  2; // PD2 pin 4
+const int LedPinOn    =  2; // PD2 pin 4
+const int LedPinOff   =  3; // PD3 pin 5
 const int switchOnPin =  8; // PB0 pin 14
 const int TestPin     =  5; // PB5 pin 11
 const int PinAdcRef   = 14; // PC0 pin 23
