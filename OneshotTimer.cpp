@@ -4,7 +4,7 @@
 
 OneshotTimer::OneshotTimer(unsigned long duration, void (*callback)())
 : m_duration(duration),
-  m_stopTime(-1),
+  m_stopTime(0),
   m_timerStarted(false),
   m_callback(callback)
 {

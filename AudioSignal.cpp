@@ -1,6 +1,5 @@
 //  Copyright © 2019 Paul Langemeijer. All rights reserved.
 #include "AudioSignal.h"
-#include <Arduino.h>
 
 const int BufSize = 10;
 
@@ -13,6 +12,11 @@ AudioSignal::AudioSignal(int pinAdc,  int pinAdcRef, int treshold)
 	m_bufferIndex = 0;
 	m_bufferMax   = 0;
 	m_buffer      = new int[BufSize];
+}
+
+void AudioSignal::SetTreshold(int treshold)
+{
+	m_treshold  = treshold;
 }
 
 bool AudioSignal::isDetected()

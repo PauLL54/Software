@@ -6,8 +6,10 @@
 
 const int LedPinOn    =  2; // PD2 pin 4
 const int LedPinOff   =  3; // PD3 pin 5
-const int switchOnPin =  8; // PB0 pin 14
-const int TestPin     =  5; // PB5 pin 11
+const int SwitchOnPin =  8; // PB0 pin 14
+const int PinJ1       =  5; // PB5 pin 11
+const int PinJ2       =  6; // PB6 pin 12
+const int TestPin     = 11; // PB3 pin 17
 const int PinAdcRef   = 14; // PC0 pin 23
 const int PinAdc      = 15; // PC1 pin 24
 const int Treshold    =  4; // treshold value (in bits) for audio detected
@@ -28,7 +30,7 @@ OneshotTimer musicDetectionTimer = OneshotTimer(MusicDetectionTimeout,   onMusic
 OneshotTimer spikeDetectionTimer = OneshotTimer(SpikeDetectionTimeout,   onSpikeDetectionTimerExpired);
 OneshotTimer musicStoppingTimer  = OneshotTimer(NoMusicDetectionTimeout, onMusicStoppingTimerExpired);
 
-OutputDevice outputDevice = OutputDevice(LedPinOn, LedPinOff, switchOnPin);
+OutputDevice outputDevice = OutputDevice(LedPinOn, LedPinOff, SwitchOnPin);
 AudioSignal  audioSignal  = AudioSignal(PinAdc, PinAdcRef, Treshold);
 StateMachine stateMachine = StateMachine(musicDetectionTimer, spikeDetectionTimer, musicStoppingTimer, outputDevice);
 

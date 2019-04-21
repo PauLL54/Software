@@ -5,6 +5,7 @@ class AudioSignal {
 public:
 	AudioSignal(int pinAdc, int pinAdcRef, int treshold);
 
+	void SetTreshold(int treshold);
 	bool isDetected();
 	
 private:
