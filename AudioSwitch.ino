@@ -12,7 +12,7 @@ const int PinJ2       =  6; // PB6 pin 12
 const int TestPin     = 11; // PB3 pin 17
 const int PinAdcRef   = 14; // PC0 pin 23
 const int PinAdc      = 15; // PC1 pin 24
-const int Treshold    =  4; // treshold value (in bits) for audio detected
+const int Treshold    =  2; // treshold value (in bits) for audio detected
 
 const int LedBlinkTimeOnStartup = 5; // seconds
 
@@ -49,6 +49,14 @@ void onMusicStoppingTimerExpired()
   stateMachine.onMusicStoppingTimerExpired();
 }
 
+void checkSensitivityMode()
+{
+  int sensitivity = digitalRead(PinJ1);
+  sensitivity += digitalRead(PinJ2) << 1;
+  sensitivity++; // = 1, 2, 3, 4
+  audioSignal.SetTreshold(sensitivity * Treshold);
+}
+
 void checkTestMode()
 {
   if (digitalRead(TestPin) == 0)
@@ -76,4 +84,5 @@ void loop()
   musicStoppingTimer.update();
 
   checkTestMode();
+  checkSensitivityMode();
 }
