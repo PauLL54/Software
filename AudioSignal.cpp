@@ -1,6 +1,9 @@
 //  Copyright © 2019 Paul Langemeijer. All rights reserved.
 #include "AudioSignal.h"
 
+// When building in Arduino IDE, uncomment next line:
+//#include <arduino.h>
+
 const int BufSize = 10;
 
 AudioSignal::AudioSignal(int pinAdc,  int pinAdcRef, int treshold)
