@@ -12,6 +12,10 @@ OneshotTimer::OneshotTimer(unsigned long duration, void (*callback)())
 
 void OneshotTimer::setDuration(unsigned long duration)
 {
+    if (m_timerStarted)
+    {
+        m_stopTime = m_stopTime - m_duration + duration;
+    }
     m_duration = duration;
 }
 

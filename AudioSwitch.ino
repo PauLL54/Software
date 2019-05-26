@@ -7,12 +7,12 @@
 const int LedPinOn    =  2; // PD2 pin 4
 const int LedPinOff   =  3; // PD3 pin 5
 const int SwitchOnPin =  8; // PB0 pin 14
-const int PinJ1       =  5; // PB5 pin 11
-const int PinJ2       =  6; // PB6 pin 12
-const int TestPin     = 11; // PB3 pin 17
+const int PinJ1       =  5; // PB5 pin 11   Sensitivity
+const int PinJ2       =  6; // PB6 pin 12   Sensitivity
+const int TestPin     = 11; // PB3 pin 17   when set, selects NoMusicDetectionTimeoutTestMode
 const int PinAdcRef   = 14; // PC0 pin 23
 const int PinAdc      = 15; // PC1 pin 24
-const int Treshold    =  2; // treshold value (in bits) for audio detected
+const int Treshold    = 10; // treshold value (in bits) for audio detected
 
 const int LedBlinkTimeOnStartup = 5; // seconds
 
@@ -20,6 +20,7 @@ const unsigned long MusicDetectionTimeout           =    600; // ms
 const unsigned long SpikeDetectionTimeout           =    300; // ms 
 const unsigned long NoMusicDetectionTimeout         = 300000; // 5 minutes
 const unsigned long NoMusicDetectionTimeoutTestMode =   2000; // 2 seconds 
+int m_sensitivity = -1;
 
 // Required forward declarations:
 void onMusicDetectionTimerExpired(); 
@@ -54,7 +55,12 @@ void checkSensitivityMode()
   int sensitivity = digitalRead(PinJ1);
   sensitivity += digitalRead(PinJ2) << 1;
   sensitivity++; // = 1, 2, 3, 4
-  audioSignal.SetTreshold(sensitivity * Treshold);
+  
+  if (m_sensitivity != sensitivity)
+  {
+    m_sensitivity = sensitivity;
+    audioSignal.SetTreshold(sensitivity * Treshold);
+  }
 }
 
 void checkTestMode()
