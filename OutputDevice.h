@@ -17,5 +17,5 @@ private:
 private:
 	int m_ledPinOn;
 	int m_ledPinOff;
-	int m_switchOnPin;
+	int m_SsrPin;
 };

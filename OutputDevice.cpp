@@ -2,18 +2,18 @@
 #include "OutputDevice.h"
 #include <Arduino.h>
 
-OutputDevice::OutputDevice(int ledPinOn, int ledPinOff, int switchOnPin)
+OutputDevice::OutputDevice(int ledPinOn, int ledPinOff, int SsrPin)
 {
 	m_ledPinOn    = ledPinOn;
 	m_ledPinOff   = ledPinOff;
-	m_switchOnPin = switchOnPin;
+	m_SsrPin      = SsrPin;
 }
 
 void OutputDevice::setup()
 {
 	pinMode(m_ledPinOn,    OUTPUT);
 	pinMode(m_ledPinOff,   OUTPUT);
-	pinMode(m_switchOnPin, OUTPUT);
+	pinMode(m_SsrPin,      OUTPUT);
 	
 	setOff();
 }
@@ -53,12 +53,12 @@ void OutputDevice::showLedOffState()
 
 void OutputDevice::setOn()
 {
-	digitalWrite(m_switchOnPin, HIGH);
+	digitalWrite(m_SsrPin, HIGH);
 	showLedOnState();
 }
 
 void OutputDevice::setOff()
 {
-	digitalWrite(m_switchOnPin, LOW);
+	digitalWrite(m_SsrPin, LOW);
 	showLedOffState();
 }
