@@ -39,7 +39,7 @@ int AudioSignal::getDiffValue()
     String s1 = String(adc);
     String s2 = String(adcRef);
     String s = "ADC=" + s1 + " VRef=" + s2;
-    Serial.println(s);
+    //Serial.println(s);
   
 	return  adcRef - adc;
 }

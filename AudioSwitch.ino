@@ -16,8 +16,8 @@ const int Treshold    = 10; // treshold value (in bits) for audio detected
 
 const int LedBlinkTimeOnStartup = 5; // seconds
 
-const unsigned long MusicDetectionTimeout           =    600; // ms 
-const unsigned long SpikeDetectionTimeout           =    300; // ms 
+const unsigned long MusicDetectionTimeout           =    300; // ms 
+const unsigned long SpikeDetectionTimeout           =    150; // ms 
 const unsigned long NoMusicDetectionTimeout         = 300000; // 5 minutes
 const unsigned long NoMusicDetectionTimeoutTestMode =   2000; // 2 seconds 
 int m_sensitivity = -1;
@@ -74,6 +74,7 @@ void checkTestMode()
 void setup() 
 {
   Serial.begin(9600);
+  //Serial.println("setup");
   outputDevice.setup();
   outputDevice.blinkLedsOnOff(LedBlinkTimeOnStartup); // shows that the processor is alive
   analogReference(INTERNAL);  // Configures the reference voltage to 1.1V used for analog input

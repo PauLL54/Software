@@ -120,7 +120,7 @@ void StateMachine::onMusicStoppingTimerExpired()
 void StateMachine::setState(State state)
 {
   m_state = state;
-  Serial.println(getState());
+  //Serial.println(getState());
 }
 
 String StateMachine::getState()
