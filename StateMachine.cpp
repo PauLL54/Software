@@ -85,7 +85,7 @@ void StateMachine::onSpikeDetectionTimerExpired()
 			break;
 			
 		case State::MusicRestarting:	
-			m_musicStoppingTimer.start();
+			m_musicStoppingTimer.stop();
 			setState(State::MusicStopping);
 			break;
 

@@ -16,7 +16,7 @@ const int Treshold    = 10; // treshold value (in bits) for audio detected
 
 const int LedBlinkTimeOnStartup = 5; // seconds
 
-const unsigned long MusicDetectionTimeout           =    300; // ms 
+const unsigned long MusicDetectionTimeout           =   1200; // ms 
 const unsigned long SpikeDetectionTimeout           =    150; // ms 
 const unsigned long NoMusicDetectionTimeout         = 300000; // 5 minutes
 const unsigned long NoMusicDetectionTimeoutTestMode =   2000; // 2 seconds 
