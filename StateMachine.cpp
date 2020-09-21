@@ -59,8 +59,6 @@ void StateMachine::onMusicDetectionTimerExpired()
 			break;
 			
 		case State::MusicPlaying:	
-		    Serial.println("State::MusicPlaying");
-
 			m_musicStoppingTimer.start();
 			setState(State::MusicStopping);
 			break;
