@@ -59,6 +59,8 @@ void StateMachine::onMusicDetectionTimerExpired()
 			break;
 			
 		case State::MusicPlaying:	
+		    Serial.println("State::MusicPlaying");
+
 			m_musicStoppingTimer.start();
 			setState(State::MusicStopping);
 			break;
@@ -86,7 +88,8 @@ void StateMachine::onSpikeDetectionTimerExpired()
 			
 		case State::MusicRestarting:	
 			m_musicStoppingTimer.stop();
-			setState(State::MusicStopping);
+			setState(State::Idle);
+			m_outputDevice.setOff();
 			break;
 
 		default:
@@ -120,7 +123,7 @@ void StateMachine::onMusicStoppingTimerExpired()
 void StateMachine::setState(State state)
 {
   m_state = state;
-  //Serial.println(getState());
+  Serial.println(getState());
 }
 
 String StateMachine::getState()
